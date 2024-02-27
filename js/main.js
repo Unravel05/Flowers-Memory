@@ -34,43 +34,98 @@ const back = ["https://thumbs.dreamstime.com/b/basket-isolated-illustration-whit
             "https://thumbs.dreamstime.com/b/basket-isolated-illustration-white-background-33516377.jpg"
 ] 
 
-// const cards = document.querySelectorAll('.flowers');
-
-// var rows = 4;
-// var columns = 4;
-
-let flippedCard = [];
-
 
 let card 
 const imageContainer =  document.querySelector('.image-container');
-// const button = document.querySelectorAll('button')
+
+
 
 shufflecards();
 
+let timerDuration = 60000; 
+let timerStarted = false; 
+let timerId; 
 
+function startTimer() {
+    let endTime = Date.now() + timerDuration;
+    timerId = setInterval(function() {
+        let remainingTime = endTime - Date.now();
+        if (remainingTime <= 0) {
+            clearInterval(timerId);
+            console.log("Time's up! You lose.");
+        } else {
+            console.log(`Time remaining: ${Math.ceil(remainingTime / 1000)} seconds`);
+        }
+    }, 1000);
+}
 
 for (let i = 0; i < images.length; i++) {
     card = document.createElement('img')
     card.src = images[i];
     card.classList.add("flowers");
     imageContainer.appendChild(card)
+    }
+
+    let matches = 0
+    let getCards1 
+    let getCards2 
+    
+    const flowers = document.querySelectorAll('.flowers');
+    flowers.forEach((flower) => {
+        flower.addEventListener('click', function() {
+            if (!timerStarted) {
+                startTimer();
+                timerStarted = true; 
+            }
+
+        if (getCards1 === undefined) {
+            getCards1 = flower.getAttribute('src')
+            console.log("Pick another!")
+        } else {
+            getCards2 = flower.getAttribute('src')
+        }
+
+                if (getCards1 === getCards2) {
+                    matches++;
+                    updateMatchCount();           
+                    if (matches === 8) {
+                        console.log('Winner') 
+                        clearInterval(timerId);
+                    } else {
+                        console.log('keep trying')
+                    }
+                } 
+                
+                reset();         
+        });
+    });
+            
+        
+        function reset() {
+            if (getCards1 !== undefined && getCards2 !== undefined) {
+               getCards1 = undefined;
+               getCards2 = undefined;
+            }
+        }
+        function updateMatchCount() {
+            console.log(`Matches: ${matches}/8`)
+        }
+
+
+// var cards = document.querySelectorAll('.card');
+
+// [...cards].forEach((card)=>{
+//   card.addEventListener( 'click', function() {
+//     card.classList.toggle('is-flipped');
+//   });
+// });
+
+for (let i = 0; i < images.length; i++) {
+    let card = document.createElement('img')
+    card.src = back[i];
+    card.classList.add("flowers");
+    imageContainer.appendChild(card)
 }
-
-var cards = document.querySelectorAll('.card');
-
-[...cards].forEach((card)=>{
-  card.addEventListener( 'click', function() {
-    card.classList.toggle('is-flipped');
-  });
-});
-
-// for (let i = 0; i < images.length; i++) {
-//     let card = document.createElement('img')
-//     card.src = back[i];
-//     card.classList.add("flowers");
-//     imageContainer.appendChild(card)
-// }
 
 // window.onload = function() {
 // }
@@ -78,21 +133,21 @@ var cards = document.querySelectorAll('.card');
 
 // function shufflecard() 
 // {
-//         for (let i = 0; i < images.length; i++) {
-//                 let j = Math.floor(Math.random() * images.length);
-//                 let temp = images[i]; 
-//                 images[i] = images[j];
-//                 images[j] = temp;
-//             }
+        // for (let i = 0; i < images.length; i++) {
+        //         let j = Math.floor(Math.random() * images.length);
+        //         let temp = images[i]; 
+        //         images[i] = images[j];
+        //         images[j] = temp;
+        //     }
 //         }    
         
         
-for (let i = 0; i < images.length; i++) {
-    // console.log(card)
-    card.dataset.id = i;
-    card.style.backgroundImage = `url('${back}')`;
-    card.addEventListener('click',  function () {
-        console.log("click")
+// for (let i = 0; i < images.length; i++) {
+//     console.log(imageContainer)
+//     card.dataset.id = i;
+//     card.style.backgroundImage = `url('${back}')`;
+//     card.addEventListener('click',  function () {
+//         console.log("click")
         // if (flippedCards.length < 2) {
         //     let card = event.target;
         //     card.style.backgroundImage = `url('${images[card.dataset.id]}')`;
@@ -101,12 +156,12 @@ for (let i = 0; i < images.length; i++) {
         //         setTimeout(checkForMatch, 1000);
         //     }
         // }
-    })
+    // })
 
-    imageContainer.appendChild(card);
-    }
-    function flipCard() {
-        console.log()
+    // imageContainer.appendChild(card);
+    // }
+    // function flipCard() {
+    //     console.log()
         // if (flippedCards.length < 2) {
         //     let card = event.target;
         //     card.style.backgroundImage = `url('${images[card.dataset.id]}')`;
@@ -115,20 +170,20 @@ for (let i = 0; i < images.length; i++) {
         //         setTimeout(checkForMatch, 1000);
         //     }
         // }
-    }
+    // }
 
 
-    function checkForMatch() {
-        if (flippedCards[0].dataset.id === flippedCards[1].dataset.id) {
-            matchedCards.push(flippedCards[0]);
-            matchedCards.push(flippedCards[1]);
-            flippedCards = [];
-        } else {
-            flippedCards[0].style.backgroundImage = `url('${back}')`;
-            flippedCards[1].style.backgroundImage = `url('${back}')`;
-            flippedCards = [];
-        }
-    }
+    // function checkForMatch() {
+    //     if (flippedCards[0].dataset.id === flippedCards[1].dataset.id) {
+    //         matchedCards.push(flippedCards[0]);
+    //         matchedCards.push(flippedCards[1]);
+    //         flippedCards = [];
+    //     } else {
+    //         flippedCards[0].style.backgroundImage = `url('${back}')`;
+    //         flippedCards[1].style.backgroundImage = `url('${back}')`;
+    //         flippedCards = [];
+    //     }
+    // }
     
     function shufflecards() {
         for (let i = 0; i < images.length; i++) {
