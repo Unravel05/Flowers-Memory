@@ -22,20 +22,19 @@ body {
 h1 {
     color: rgb(51, 12, 88);
     letter-spacing: 0.2vmin;
-    /* margin-top: -7vh; */
     margin: 0;    
     display: flex;
     flex-direction: column;
     justify-items: center;
     text-transform: uppercase;
-    /* margin-top: -10vh; */
+    font-size: 4vh;
 }
 
 h2 {
-    /* margin-top: -8vmin; */
     margin: 0;
     font-size: small;
     letter-spacing: 0.3vmin;
+    font-size: 1.5vh;
 }
 
 .container {
@@ -58,8 +57,11 @@ h2 {
     flex-wrap: wrap;
     gap: 1vh;
     /* margin-top: -13vh; */
-    margin-left: 6vh;
+    /* margin-left: 6vh; */
+    align-items: center;
+    justify-content: center;
 }
+
 
 #purple {
     width: 150px;
@@ -157,22 +159,22 @@ h2 {
     border-radius: 8vh;
 }
 
-
-.btt {
-   
-}
-
 button {
     color: rgb(62, 23, 92);
     background-color: rgb(175, 205, 239);
     font-size: 3vmin;
     cursor: pointer;
+    margin-top: -3vh;
     margin-bottom: -15vh;
-    justify-content: end;
-
 }
 
 button:focus {
     color: rgb(241, 234, 247);
     background-color: blueviolet;
+}
+
+.flowers {
+    width: 150px;
+    height: 150px;
+    border-radius: 8vh;
 }
