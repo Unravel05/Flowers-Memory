@@ -39,10 +39,10 @@ const back = ["https://thumbs.dreamstime.com/b/basket-isolated-illustration-whit
 // var rows = 4;
 // var columns = 4;
 
-var flippedCard = [];
+let flippedCard = [];
 
 
-const card = document.querySelectorAll('flores')
+let card 
 const imageContainer =  document.querySelector('.image-container');
 // const button = document.querySelectorAll('button')
 
@@ -51,7 +51,7 @@ shufflecards();
 
 
 for (let i = 0; i < images.length; i++) {
-    let card = document.createElement('img')
+    card = document.createElement('img')
     card.src = images[i];
     card.classList.add("flowers");
     imageContainer.appendChild(card)
@@ -72,8 +72,8 @@ var cards = document.querySelectorAll('.card');
 //     imageContainer.appendChild(card)
 // }
 
-window.onload = function() {
-}
+// window.onload = function() {
+// }
 
 
 // function shufflecard() 
@@ -88,22 +88,35 @@ window.onload = function() {
         
         
 for (let i = 0; i < images.length; i++) {
+    // console.log(card)
     card.dataset.id = i;
     card.style.backgroundImage = `url('${back}')`;
-    card.addEventListener('click', flipCard);
+    card.addEventListener('click',  function () {
+        console.log("click")
+        // if (flippedCards.length < 2) {
+        //     let card = event.target;
+        //     card.style.backgroundImage = `url('${images[card.dataset.id]}')`;
+        //     flippedCards.push(card);
+        //     if (flippedCards.length === 2) {
+        //         setTimeout(checkForMatch, 1000);
+        //     }
+        // }
+    })
+
     imageContainer.appendChild(card);
     }
-
     function flipCard() {
-        if (flippedCards.length < 2) {
-            let card = event.target;
-            card.style.backgroundImage = `url('${images[card.dataset.id]}')`;
-            flippedCards.push(card);
-            if (flippedCards.length === 2) {
-                setTimeout(checkForMatch, 1000);
-            }
-        }
+        console.log()
+        // if (flippedCards.length < 2) {
+        //     let card = event.target;
+        //     card.style.backgroundImage = `url('${images[card.dataset.id]}')`;
+        //     flippedCards.push(card);
+        //     if (flippedCards.length === 2) {
+        //         setTimeout(checkForMatch, 1000);
+        //     }
+        // }
     }
+
 
     function checkForMatch() {
         if (flippedCards[0].dataset.id === flippedCards[1].dataset.id) {
