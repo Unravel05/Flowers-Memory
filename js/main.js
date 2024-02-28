@@ -16,7 +16,7 @@ const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuvjWlgY3
                 "https://t4.ftcdn.net/jpg/02/38/34/81/360_F_238348192_6X6SHydlB62fxJCTJZJunMhtQCddEzdB.jpg",
                 ]
 
-const back = ["https://thumbs.dreamstime.com/b/basket-isolated-illustration-white-background-33516377.jpg",
+const backgroundImage = ["https://thumbs.dreamstime.com/b/basket-isolated-illustration-white-background-33516377.jpg",
             "https://thumbs.dreamstime.com/b/basket-isolated-illustration-white-background-33516377.jpg",
             "https://thumbs.dreamstime.com/b/basket-isolated-illustration-white-background-33516377.jpg",
             "https://thumbs.dreamstime.com/b/basket-isolated-illustration-white-background-33516377.jpg",
@@ -38,7 +38,10 @@ const back = ["https://thumbs.dreamstime.com/b/basket-isolated-illustration-whit
 let card 
 const imageContainer =  document.querySelector('.image-container');
 
-
+let cardSet
+let board = []
+let rows = 4
+let columns = 4
 
 shufflecards();
 
@@ -60,11 +63,29 @@ function startTimer() {
 }
 
 for (let i = 0; i < images.length; i++) {
-    card = document.createElement('img')
-    card.src = images[i];
-    card.classList.add("flowers");
-    imageContainer.appendChild(card)
+    div = document.createElement('div')
+    img = document.createElement('img')
+    backcard = document.createElement('img')
+    img.src = images[i];
+    backcard.src = backgroundImage[i];
+    img.classList.add("flowers");
+    backcard.classList.add("flowers");
+    backcard.classList.add("fback");
+    imageContainer.appendChild(div)
+    div.appendChild(img)
+    div.appendChild(backcard)
     }
+
+
+    // function startGame() {
+    //     for (let r = 0; r < rows; r++) {
+    //         let row = [];
+    //         for (let c = 0; c < columns; c++) {
+    //             let images = cardSet.pop();
+    //             row.push(images)
+    //         }
+    //     }
+    // }
 
     let matches = 0
     let getCards1 
@@ -120,12 +141,7 @@ for (let i = 0; i < images.length; i++) {
 //   });
 // });
 
-for (let i = 0; i < images.length; i++) {
-    let card = document.createElement('img')
-    card.src = back[i];
-    card.classList.add("flowers");
-    imageContainer.appendChild(card)
-}
+
 
 // window.onload = function() {
 // }
