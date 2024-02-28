@@ -22,9 +22,7 @@ body {
 h1 {
     color: rgb(51, 12, 88);
     letter-spacing: 0.2vmin;
-    margin: 0;    
-    display: flex;
-    flex-direction: column;
+    margin: 0;
     justify-items: center;
     text-transform: uppercase;
     font-size: 4vh;
@@ -45,45 +43,55 @@ h2 {
 }
 
 .image-container {
-    display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100px;
+    height: 100px;
 }
 
-.flowers{
-    position: relative;
-    width: 100%;
-    height: 100%;
+.flip-card {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    perspective: 1000px;
+}
+
+.flowers {
+    display: flex;
+    flex: content;
+    flex-wrap: wrap;
     border-radius: 8vh;
+    width: 100px;
+    height: 100px;
     gap: 4vh;
+}
+  .flip-card-inner {
+    width: 100px;
+    height: 100px;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.fback {
-    background-color: transparent;
-    width: 220px;
-    height: 220px;
-    perspective: 1000px;
-    border-radius: 8vh;
-    gap: 4vh; 
-}
-
-.fback:hover .flowers {
+  }
+  
+  .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
-}
-
-  .fback, .flowers {
-    width: 220px;
-    height: 220px;
+  }
+  
+  .flip-card-front, .flip-card-back {
+    width: 100px;
+    height: 100px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
   
-  .flowers {
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  .flip-card-back {
+    background-color: #2980b9;
+    color: white;
     transform: rotateY(180deg);
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
   }
 
 .button {

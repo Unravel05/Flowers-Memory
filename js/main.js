@@ -37,6 +37,10 @@ const backgroundImage = ["https://thumbs.dreamstime.com/b/basket-isolated-illust
 
 let card 
 const imageContainer =  document.querySelector('.image-container');
+const flipCard = document.querySelector('.flip-card');
+const flipCardInner = document.querySelector('.flip-card-inner');
+const flipCardFront = document.querySelector('.flip-card-front');
+const flipCardBack = document.querySelector('.flip-card-back');
 
 let cardSet
 let board = []
@@ -62,19 +66,56 @@ function startTimer() {
     }, 1000);
 }
 
+
 for (let i = 0; i < images.length; i++) {
+    div = document.createElement('div')
     div = document.createElement('div')
     img = document.createElement('img')
     backcard = document.createElement('img')
     img.src = images[i];
     backcard.src = backgroundImage[i];
+    div.classList.add("flip-card-inner")
     img.classList.add("flowers");
+    img.classList.add("flip-card-front");
     backcard.classList.add("flowers");
-    backcard.classList.add("fback");
+    backcard.classList.add("flip-card-back");
     imageContainer.appendChild(div)
     div.appendChild(img)
     div.appendChild(backcard)
     }
+
+
+
+
+// for (let i = 0; i < images.length; i++) {
+//     div = document.createElement('div') //flip-card = flowers
+//         div = document.createElement('div') //flip-card-inner, 
+//             div = document.createElement('div') //flip-card-front, fback
+//                 backcard = document.createElement('img')
+//             div = document.createElement('div') //flip-card-back, flowers
+//                 imgs = document.createElement('img')
+
+//     imgs.src = images[i];
+//     backcard.src = backgroundImage[i];
+
+//     div.classList.add("flip-card")
+//         div.classList.add("flip-card-inner")
+//         div.classList.add("flip-card-front")
+//             backcard.classList.add("fback")
+//         div.classList.add("flip-card-back")
+//             imgs.classList.add("flowers")
+
+//     imageContainer.appendChild(div) 
+//     flipCard.appendChild(div) //flipinner ->flipcard
+//     flipCardInner.appendChild(div) // flipcardfront -> flipinner
+//     flipCardFront.appendChild(backcard) //fback.img -> flipcardfront
+//     flipCardInner.appendChild(div) //flip-card-back -> flipinner
+//     flipCardBack.appendChild(imgs)
+
+    // backcard.classList.add("flowers");
+    // div.appendChild(backcard)
+
+    // }
 
 
     // function startGame() {
