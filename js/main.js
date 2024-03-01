@@ -42,8 +42,6 @@ const flipCardInner = document.querySelector('.flip-card-inner');
 const flipCardFront = document.querySelector('.flip-card-front');
 const flipCardBack = document.querySelector('.flip-card-back');
 
-let cardSet
-
 shufflecards();
 
 let timerDuration = 60000;
@@ -56,13 +54,11 @@ function startTimer() {
         let remainingTime = endTime - Date.now();
         if (remainingTime <= 0) {
             clearInterval(timerId);
-            console.log("Time's up! You lose.");
+            timerDisplay.innerText = "Time's up!";
         } else {
-            console.log(`Time remaining: ${Math.ceil(remainingTime / 1000)} seconds`);
-        }
+            timerDisplay.innerText = `Timer: ${Math.ceil(remainingTime / 1000)} seconds`;        }
     }, 1000);
 }
-//winnermessage.innerHTML
 
 for (let i = 0; i < images.length; i++) {
     div = document.createElement('div')
@@ -97,13 +93,10 @@ let cardClickedCount = 0
 let matches = 0
 let getCards1 
 let getCards2
-let back1
-let back2
+
 
 const flowers = document.querySelectorAll('.flip-card-inner');
-// console.log(flowers)
 flowers.forEach((flower) => {
-    // console.log(flower)
     flower.addEventListener('click', function () {
         if (!timerStarted) {
             startTimer();
@@ -125,53 +118,45 @@ function trackCardClick(flower) {
 }
 
 function matching(flower) {
-    console.log('inside matching')
-    console.log(getCards1)
-    // console.log(flower.children[0].getAttribute('src'))
-    // if (!getCards1) {
-        // getCards1 = flower.children[0].getAttribute('src')
-        // console.log(flowers)
-    // } else {
-        getCards2 = flower.children[0].getAttribute('src')
-        console.log('getcar2')
-        
-        if (getCards1.children[0].getAttribute('src') === getCards2) {
-            matches++;
-            // updateMatchCount();
+    getCards2 = flower.children[0].getAttribute('src')
+    
+    if (getCards1.children[0].getAttribute('src') === getCards2) {
+        matches++;
             if (matches === 8) {
-                console.log('Winner')
+                showResult(true); 
                 clearInterval(timerId);
             }
             } else {
                 setTimeout(function () {
-                    console.log('cards should flip over!')
-                    console.log(getCards1)
                     flower.classList.remove('cardselected')
                     getCards1.classList.remove('cardselected')
                 }, 1000);
-                console.log('keep trying')
             }
-    // }
     reset();
 }
 
-// flowers.forEach((flower) => {
-//     flower.addEventListener('click', function () {
-//         if (!timerStarted) {
-//             startTimer();
-//             timerStarted = true;
-//         }
-        
-//         trackCardClick();
-//     });
-// });
-
 function reset() {
     if (getCards1 !== undefined && getCards2 !== undefined) {
-        // getCards1 = undefined;
-        // getCards2 = undefined;
     }
 }
+
+result();
+
+function showResult(won) {
+    const pickFlower = document.getElementById('pickFlower');
+    const flawless = document.getElementById('flawless');
+
+    if (won) {
+        pickFlower.style.display = 'none';
+        flawless.style.display = 'block';
+    } else {
+        pickFlower.style.display = 'block';
+        flawless.style.display = 'none';
+    }
+}
+
+
+showResult(false);
 
 function shufflecards() {
     for (let i = 0; i < images.length; i++) {
