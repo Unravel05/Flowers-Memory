@@ -23,8 +23,5 @@ Pick up to two pair of flowers to make the most stunning and _flawless_ bouquet.
 
 # Next Steps
 
-* The game is gonna show a list of the flowers that you need to pick up (It won’t have a specific order) you can tried to get the same flowers before time goes up!
-* Is going to have a board of 8colums and 8rows
-* If the cards are the same, cards should stay up 
-* If the cards are not the same they are going to turn back.
-* You also have a  reset bottom if you lose to redo the game. (Reseting the order of the flowers
+* Make a animation of the bouquet with the flowers that you g=have match
+* Improve the aestetic of the game
